@@ -82,6 +82,12 @@ Listar as tags:
 git tag [-l, --list]
 ```
 
+Listar as tags a partir de um pattern:
+
+```bash
+git tag -l "v1.0*"
+```
+
 Remover uma tag:
 
 ```bash
@@ -97,7 +103,7 @@ git tag 1.0.0 -m "release 1.0.0"
 Adicionando tags para commits existentes:
 
 ```bash
-git tag -a "1.0.0" -m "release 1.0.0" <hash do commit>
+git tag -a 1.0.0 -m "message" <hash do commit>
 ```
 
 Enviando para o repositório as tags anotadas:
