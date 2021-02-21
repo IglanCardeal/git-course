@@ -68,6 +68,44 @@ git stash apply
 git stash pop
 ```
 
+## Tags
+
+Criar tags que podem ser relacionadas a versões, por exemplo. Muito util para melhorar rastreabilidade do projeto e localizar bugs, features, etc...
+
+```bash
+git tag 1.0.0
+```
+
+Listar as tags:
+
+```bash
+git tag [-l, --list]
+```
+
+Remover uma tag:
+
+```bash
+git tag -d [--delete] 1.0.0  
+```
+
+Criando tags anotadas ([annotated tag][4]):
+
+```bash
+git tag 1.0.0 -m "release 1.0.0"
+```
+
+Adicionando tags para commits existentes:
+
+```bash
+git tag -a "1.0.0" -m "release 1.0.0" <hash do commit>
+```
+
+Enviando para o repositório as tags anotadas:
+
+```bash
+git push origin master --follow-tags
+```
+
 ## [Conventional Commits][1]
 
 Convenção criada pelo Angular sobre padronização de mensagens de commits, tornando as mensagens de commits muito mais fáceis de serem identificadas e do quê se trata determinada mensagem de commit.
@@ -99,3 +137,4 @@ Must be one of the following:
 [1]: https://www.conventionalcommits.org/en/v1.0.0/
 [2]: https://www.npmjs.com/package/git-commit-msg-linter
 [3]: https://github.com/angular/angular/blob/22b96b9/CONTRIBUTING.md#-commit-message-guidelines
+[4]: https://git-scm.com/book/en/v2/Git-Basics-Tagging
