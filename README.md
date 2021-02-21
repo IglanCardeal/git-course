@@ -37,9 +37,14 @@ Atalhos personalizados no arquivo de config.
   s = !git status
   ss = !git status -s
   c = !git add --all && git commit -m
-  l = !git log --pretty=format:'%C(green)%h %C(red)%d%C(cyan)%s - %C(white)%cn, %C(yellow)%cr'
+  l = !git log --pretty=format:'%C(green)%h %C(red)%d %C(cyan)%s %n %C(white)Author: %cn, %C(yellow)%cr %n Date: %ai %n'
+  # l = !git log --pretty=reference
+  # l = !git log --pretty=fuller
+  # l = !git log --pretty=full
   p = !git push origin
 ```
+
+Para o `--pretty=format:`, vide [docs.](https://git-scm.com/docs/pretty-formats)
 
 ## Comandos
 
@@ -69,10 +74,28 @@ Convenção criada pelo Angular sobre padronização de mensagens de commits, to
 
 O link acima contém todos os padrões a serem seguidos.
 
-A lib [`git-commit-msg-linter`][2] para Node.js oferece suporte para as mensgagens de commit e faz um _linter_ (semelhante ao eslint para códigos) para validação dos formatos das mensagens de commit.
+A lib [`git-commit-msg-linter`][2] para Node.js oferece suporte para as mensagens de commit e faz um _linter_ (semelhante ao eslint para códigos) para validação dos formatos das mensagens de commit. No caso, ele valida o `type` das mensagens e tamanho das mensagens (_max-len is 100_). Agora para que os commits possam ser concluidas, deve se seguir os padrões do conventional commits exigidos pela lib.
+
+### Trecho [retirado da documentação do Angular][3]:
+
+#### Type
+
+Must be one of the following:
+
+- `build`: Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)
+- `ci`: Changes to our CI configuration files and scripts (example scopes: Travis, Circle, BrowserStack, SauceLabs)
+- `docs`: Documentation only changes
+- `feat`: A new feature
+- `fix`: A bug fix
+- `perf`: A code change that improves performance
+- `refactor`: A code change that neither fixes a bug nor adds a feature
+- `style`: Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
+- `test`: Adding missing tests or correcting existing tests
 
 ```bash
+
 ```
 
 [1]: https://www.conventionalcommits.org/en/v1.0.0/
 [2]: https://www.npmjs.com/package/git-commit-msg-linter
+[3]: https://github.com/angular/angular/blob/22b96b9/CONTRIBUTING.md#-commit-message-guidelines
