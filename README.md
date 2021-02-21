@@ -28,10 +28,6 @@ Abrindo no VSCode:
 git config --global --edit
 ```
 
-```bash
-
-```
-
 ## Alias
 
 ```bash
@@ -41,4 +37,12 @@ git config --global --edit
   c = !git add --all && git commit -m
   l = !git log --pretty=format:'%C(green)%h %C(red)%d%C(cyan)%s - %C(white)%cn, %C(yellow)%cr'
   p = !git push origin
+```
+
+## Comandos
+
+`--amend --no-edit` - Comita um arquivo junto com o commit anterior, ou seja, dois commits diferentes se tornam um só.
+
+```bash
+git commit --amend --no-edit
 ```
