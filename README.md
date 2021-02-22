@@ -36,7 +36,7 @@ Atalhos personalizados no arquivo de config.
 [alias]
   s = !git status
   ss = !git status -s
-  c = !git add --all && git commit -m
+  c = !git add --all &git commit -m
   l = !git log --pretty=format:'%C(green)%h %C(red)%d %C(cyan)%s %n %C(white)Author: %cn, %C(yellow)%cr %n Date: %ai %n'
   # l = !git log --pretty=reference
   # l = !git log --pretty=fuller
@@ -91,7 +91,21 @@ git tag -l "v1.0*"
 Remover uma tag:
 
 ```bash
-git tag -d [--delete] 1.0.0  
+git tag -d [--delete] "<tagname>"
+```
+
+```bash
+git tag -d "v1.0.0"
+```
+
+Remover uma tag do repositório remoto:
+
+```bash
+git push --delete origin "<tagname>"
+```
+
+```bash
+git push --delete origin "v1.0.0"
 ```
 
 Criando tags anotadas ([annotated tag][4]):
@@ -103,10 +117,10 @@ git tag 1.0.0 -m "release 1.0.0"
 Adicionando tags para commits existentes:
 
 ```bash
-git tag -a 1.0.0 -m "message" <hash do commit>
+git tag -a 1.0.0 -m "message" <commit hash>
 ```
 
-Enviando para o repositório as tags anotadas:
+Enviando para o repositório incluindo as tags anotadas:
 
 ```bash
 git push origin master --follow-tags
@@ -135,6 +149,115 @@ Must be one of the following:
 - `refactor`: A code change that neither fixes a bug nor adds a feature
 - `style`: Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
 - `test`: Adding missing tests or correcting existing tests
+
+## Revert & Reset
+
+### Reset
+
+Basicamente é um operação que desfaz o `git add`, ele remove os arquivos da staged area e move-os para o unstaged area novamente, mantendo o estado que eles estavam antes de entrar na staged area.
+
+Exemplo:
+
+```bash
+$ git ss
+M README.md # red
+?? test.js # red
+```
+
+```bash
+git add .
+```
+
+```bash
+$ git ss
+M README.md # green
+A test.js # green
+```
+
+removendo o `test.js` da staged area:
+
+```bash
+$ git reset test.js
+Unstaged changes after reset:
+M       README.md
+```
+
+```bash
+$ git ss
+M README.md # green
+?? test.js # red
+```
+
+Para _resetar_ todos os arquivos da staged area, basta não passar nenhum parâmetro:
+
+```bash
+$ git add . && git ss
+M README.md # green
+A test.js # green
+```
+
+```bash
+$ git reset
+M README.md # red
+?? test.js # red
+```
+
+O `reset` também pode reverter commits de uma branch. Podemos _resetar_ e voltar para o estado de um commit anterior, passando a hash do commit desejado:
+
+```bash
+git reset <commit hash>
+```
+
+Podemos também fazer um `reset` indicando quantos (em número) commits anteriores eu quero voltar, ou seja, quantos commits eu quero que o HEAD aponte para trás. Exemplos:
+
+```bash
+git reset HEAD~1 # commit anterior
+```
+
+```bash
+git reset HEAD~2 # 2 commits atrás
+```
+
+Uma coisa interessante do `~1` é que ele pode ser usado com outras referências, como branches (exemplo: `master~1`) e até hash de commit (pode usar se copiou o hash da linha de cima, ou está fazendo um script que recebe a hash do commit, mas o comando precisaria do commit anterior). Outra coisa é que se o número desejado for 1, o mesmo pode ser ocultado (exemplo: `HEAD~`).
+
+O `reset` possui 3 níveis para _resetar_:
+
+- `--soft`: para os arquivos relacionados a todos os commits acima do commit apontado no `git reset <hash>`, ele remove os arquivos relacionandos aos commits da branch e coloca eles novamente na staged area.
+
+  Ex:
+
+```bash
+git reset 8d89344 --soft
+```
+
+- `--mixed`: (default) ele remove os arquivos relacionandos aos commits acima da branch e coloca eles novamente no workspace (unstaged area) além de manter o estado que eles estavam na unstaged area. Exemplo:
+
+```bash
+git add . 
+```
+
+```bash
+git c "test: testing git reset and revert"
+```
+
+```bash
+$ git reset HEAD~1 --mixed
+Unstaged changes after reset:
+M       README.md
+```
+
+```bash
+$ git ss
+M README.md # red
+?? test.js # red
+```
+
+- `--hard`:
+
+
+```bash
+
+```
 
 ```bash
 
