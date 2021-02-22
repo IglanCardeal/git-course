@@ -218,19 +218,23 @@ git reset HEAD~1 # commit anterior
 git reset HEAD~2 # 2 commits atrás
 ```
 
+O default do `reset` é apontar pro commit atual, ou seja, se não passar nenhum parâmetro, o `HEAD` aponta pro commit atual.
+
 Uma coisa interessante do `~1` é que ele pode ser usado com outras referências, como branches (exemplo: `master~1`) e até hash de commit (pode usar se copiou o hash da linha de cima, ou está fazendo um script que recebe a hash do commit, mas o comando precisaria do commit anterior). Outra coisa é que se o número desejado for 1, o mesmo pode ser ocultado (exemplo: `HEAD~`).
 
 O `reset` possui 3 níveis para _resetar_:
 
-- `--soft`: para os arquivos relacionados a todos os commits acima do commit apontado no `git reset <hash>`, ele remove os arquivos relacionandos aos commits da branch e coloca eles novamente na staged area.
+- `--soft`: para os arquivos relacionados a todos os commits acima do commit apontado no `git reset <hash>`, ele remove os arquivos relacionandos aos commits da branch e coloca eles novamente na staged area. **Não altera o estado na staged area.**
 
-  Ex:
+  Exemplo:
 
 ```bash
 git reset 8d89344 --soft
 ```
 
-- `--mixed`: (default) ele remove os arquivos relacionandos aos commits acima da branch e coloca eles novamente no workspace (unstaged area) além de manter o estado que eles estavam na unstaged area. Exemplo:
+- `--mixed`: (default) ele remove os arquivos relacionandos aos commits acima da branch e coloca eles novamente no workspace (unstaged area) além de manter o estado que eles estavam na unstaged area. Pode ser usado também para remover os arquivos da staged area e colocá-los novamente na unstaged area sem modificar o estado que ele tinham antes de entrar para a staged area. **Não altera o estado na unstaged area.**
+
+  Exemplo:
 
 ```bash
 git add .
@@ -252,10 +256,14 @@ M README.md # red
 ?? test.js # red
 ```
 
-- `--hard`: ele remove os arquivos relacionandos aos commits acima da branch e ainda remove os arquivos do projeto para aqueles que estavam como _untracked_ na unstaged area e desfaz as alterações dos arquivos que estavam como modificados (`M`) tambem na unstaged area.
+  Apenas removendo da staged area: `git reset` ou `git reset --mixed`
+
+- `--hard`: ele remove os arquivos relacionandos aos commits acima da branch e ainda remove os arquivos do projeto para aqueles que estavam como _untracked_ (`??`) na unstaged area e desfaz as alterações dos arquivos que estavam como modificados (`M`) tambem na unstaged area, ou seja, ele desfaz todas as modificações. **Altera o estado na unstaged area.**
+
+  **OBS**: Se um arquivo é desconhecido pelo commit atual, ou seja, adicionei um arquivo mas não commitei, o `reset --hard` não terá nenhum efeito. Todas as alterações tem que ser referentes a um commit.
 
 ```bash
-git reset 8d89344 --hard
+git reset 8d89344 --hard  
 ```
 
 ```bash
