@@ -401,6 +401,16 @@ git rm --cached index.js
 
 ## Rebase Interativo
 
+Podemos usá-lo para renomear um commit.
+
+Flags:
+
+- `-i`: exibe uma lista com os últimos commits. Usamos o `HEAD~`.
+
+```bash
+git rebase -i HEAD~5 # últimos 4 commits
+```
+
 ```bash
 
 ```
