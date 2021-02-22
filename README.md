@@ -233,7 +233,7 @@ git reset 8d89344 --soft
 - `--mixed`: (default) ele remove os arquivos relacionandos aos commits acima da branch e coloca eles novamente no workspace (unstaged area) além de manter o estado que eles estavam na unstaged area. Exemplo:
 
 ```bash
-git add . 
+git add .
 ```
 
 ```bash
@@ -252,11 +252,10 @@ M README.md # red
 ?? test.js # red
 ```
 
-- `--hard`:
-
+- `--hard`: ele remove os arquivos relacionandos aos commits acima da branch e ainda remove os arquivos do projeto para aqueles que estavam como _untracked_ na unstaged area e desfaz as alterações dos arquivos que estavam como modificados (`M`) tambem na unstaged area.
 
 ```bash
-
+git reset 8d89344 --hard
 ```
 
 ```bash
