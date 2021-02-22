@@ -6,7 +6,7 @@
 
 - `--global`
 
-- `--local`
+- `--local` (default)
 
 - Prioridade `local` > `global` > `system`
 
@@ -260,7 +260,7 @@ git reset 8d89344 --hard
 
 ### Revert
 
-Neste caso, eu posso **desfazer um commit específico revertendo todas as alterações** deste commit e gerando automaticamente um commit novo para as reversõe feitas. 
+Neste caso, eu posso **desfazer um commit específico revertendo todas as alterações** deste commit e gerando automaticamente um commit novo para as reversõe feitas.
 
 **OBS**: Os commits que estão acima do commit do revert não são alterados.
 
@@ -288,7 +288,7 @@ Flags:
 git revert HEAD~1 --no-edit
 ```
 
-- `--no-commit`: não gera commits. Neste caso as alterações vão para a staged areas para serem commitadas manualmente. 
+- `--no-commit`: não gera commits. Neste caso as alterações vão para a staged areas para serem commitadas manualmente.
 
 ```bash
 git revert HEAD~1 --no-comit
@@ -312,6 +312,87 @@ git checkout 8d89344
 
 ```bash
 git checkout v1.0.1
+```
+
+Podemos criar uma branch. Neste caso, pode ser útil na hora de analisar um estado e criar uma branch nova com o código e estrutura do estado do commit que estamos analisando na branch desacoplada. Fazemos as correções/análise e damos um merge ou não com a branch real de trabalho.
+
+```bash
+git checkout -b <branch name>
+```
+
+## Clean
+
+Remove arquivos que estão _untracked_.
+
+Flags:
+
+- `-n`: indica quais arquivos serão removidos
+
+```bash
+git clean -n
+```
+
+- `-nd`: por padrão, o `clean` não remove arquivos dentro de pastas. Neste caso é preciso ativar a recursividade. Para listar arquivos _untracked_ dentro de pastas.
+
+```bash
+git clean -nd
+```
+
+ou
+
+```bash
+git clean -n -d
+```
+
+- `-f`: força a remoção do arquivos. Esta flag é necessária para evitar ações involutárias.
+
+```bash
+git clean -f
+```
+
+para remover de forma recursiva:
+
+```bash
+git clean -f -d
+```
+
+# Rm
+
+Semelhante ao `clean`, ele remove fisicamente os arquivos que agora estão _tracked_.
+
+```bash
+git rm <filename>
+```
+
+Exemplo: após remover o arquivo `test.js`, ele estará como deletado (`D`) na staged area e teremos que fazer um novo commit para essa alteração. Podemos também reverter essa ação pois o arquivo estava _tracked_.
+
+```bash
+$ git rm test.js
+rm 'test.js'
+```
+
+```bash
+$ git ss
+D  test.js # green
+```
+
+Flags:
+
+- `-r`: para remover de forma recursiva.
+- `-rf`: para forçar remover de forma recursiva.
+
+```bash
+git rm -rf routes
+```
+
+ou
+
+```bash
+git rm -r -f routes
+```
+
+```bash
+
 ```
 
 ```bash
