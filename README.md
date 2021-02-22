@@ -269,7 +269,7 @@ Neste caso, eu posso **desfazer um commit específico revertendo todas as altera
 ```bash
 git revert HEAD~1
 ```
-
+dasdsad
 Se houver problemas de conflito, resolva-os e depois faça um commit normalmente.
 
 ```bash
