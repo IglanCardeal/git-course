@@ -266,6 +266,22 @@ M README.md # red
 git reset 8d89344 --hard  
 ```
 
+### Revert
+
+Neste caso, eu posso **desfazer um commit específico revertendo todas as alterações** deste commit e gerando automaticamente um commit novo para as reversõe feitas.
+
+```bash
+
+```
+
+```bash
+
+```
+
+```bash
+
+```
+
 ```bash
 
 ```
