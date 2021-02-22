@@ -46,7 +46,33 @@ Atalhos personalizados no arquivo de config.
 
 Para o `--pretty=format:`, vide [docs.](https://git-scm.com/docs/pretty-formats)
 
+## [Conventional Commits][1]
+
+Convenção criada pelo Angular sobre padronização de mensagens de commits, tornando as mensagens de commits muito mais fáceis de serem identificadas e do quê se trata determinada mensagem de commit.
+
+O link acima contém todos os padrões a serem seguidos.
+
+A lib [`git-commit-msg-linter`][2] para Node.js oferece suporte para as mensagens de commit e faz um _linter_ (semelhante ao eslint para códigos) para validação dos formatos das mensagens de commit. No caso, ele valida o `type` das mensagens e tamanho das mensagens (_max-len is 100_). Agora para que os commits possam ser concluidas, deve se seguir os padrões do conventional commits exigidos pela lib.
+
+### Trecho [retirado da documentação do Angular][3]:
+
+#### Type
+
+Must be one of the following:
+
+- `build`: Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)
+- `ci`: Changes to our CI configuration files and scripts (example scopes: Travis, Circle, BrowserStack, SauceLabs)
+- `docs`: Documentation only changes
+- `feat`: A new feature
+- `fix`: A bug fix
+- `perf`: A code change that improves performance
+- `refactor`: A code change that neither fixes a bug nor adds a feature
+- `style`: Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
+- `test`: Adding missing tests or correcting existing tests
+
 ## Comandos
+
+### Amend 
 
 - `--amend --no-edit` - Comita um arquivo junto com o commit anterior, ou seja, dois commits diferentes se tornam um só, no caso o commit anterior.
 
@@ -68,7 +94,7 @@ git stash apply
 git stash pop
 ```
 
-## Tags
+### Tag
 
 Criar tags que podem ser relacionadas a versões, por exemplo. Muito util para melhorar rastreabilidade do projeto e localizar bugs, features, etc...
 
@@ -126,33 +152,9 @@ Enviando para o repositório incluindo as tags anotadas:
 git push origin master --follow-tags
 ```
 
-## [Conventional Commits][1]
+### Revert & Reset
 
-Convenção criada pelo Angular sobre padronização de mensagens de commits, tornando as mensagens de commits muito mais fáceis de serem identificadas e do quê se trata determinada mensagem de commit.
-
-O link acima contém todos os padrões a serem seguidos.
-
-A lib [`git-commit-msg-linter`][2] para Node.js oferece suporte para as mensagens de commit e faz um _linter_ (semelhante ao eslint para códigos) para validação dos formatos das mensagens de commit. No caso, ele valida o `type` das mensagens e tamanho das mensagens (_max-len is 100_). Agora para que os commits possam ser concluidas, deve se seguir os padrões do conventional commits exigidos pela lib.
-
-### Trecho [retirado da documentação do Angular][3]:
-
-#### Type
-
-Must be one of the following:
-
-- `build`: Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)
-- `ci`: Changes to our CI configuration files and scripts (example scopes: Travis, Circle, BrowserStack, SauceLabs)
-- `docs`: Documentation only changes
-- `feat`: A new feature
-- `fix`: A bug fix
-- `perf`: A code change that improves performance
-- `refactor`: A code change that neither fixes a bug nor adds a feature
-- `style`: Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
-- `test`: Adding missing tests or correcting existing tests
-
-## Revert & Reset
-
-### Reset
+#### Reset
 
 Basicamente é um operação que desfaz o `git add`, ele remove os arquivos da staged area e move-os para o unstaged area novamente, mantendo o estado que eles estavam antes de entrar na staged area.
 
@@ -258,7 +260,7 @@ M README.md # red
 git reset 8d89344 --hard
 ```
 
-### Revert
+#### Revert
 
 Neste caso, eu posso **desfazer um commit específico revertendo todas as alterações** deste commit e gerando automaticamente um commit novo para as reversõe feitas.
 
@@ -294,7 +296,7 @@ git revert HEAD~1 --no-edit
 git revert HEAD~1 --no-comit
 ```
 
-## Checkout
+### Checkout
 
 Podemos desfazer alterações de um arquivo/pasta que está na **unstaged area**. Arquivos que estão como _untracked_ ou que estão na staged area não são afetados.
 
@@ -320,7 +322,7 @@ Podemos criar uma branch. Neste caso, pode ser útil na hora de analisar um esta
 git checkout -b <branch name>
 ```
 
-## Clean
+### Clean
 
 Remove arquivos que estão _untracked_.
 
@@ -356,7 +358,7 @@ para remover de forma recursiva:
 git clean -f -d
 ```
 
-## Show
+### Show
 
 Mostra todas as mudançãs dentro de um commit.
 
@@ -370,7 +372,7 @@ ou
 git show <tagname>
 ```
 
-## Rm
+### Rm
 
 Semelhante ao `clean`, ele remove fisicamente os arquivos que agora estão _tracked_.
 
@@ -413,7 +415,7 @@ git rm -r -f routes
 git rm --cached index.js
 ```
 
-## Rebase Interativo
+### Rebase Interativo
 
 Podemos usá-lo para renomear/reescrever a história de um commit.
 
@@ -435,11 +437,7 @@ Podemos também juntar vários commits em um só.
 - `f` ou `fixup`: juntar um ou mais commits e mantém a mensagem do commit de referência.
 - `e` ou `edit`: editar um commit e depois **no terminal** podemos fazer os arquivos do commit retornar para a unstaged area usando o comando `git reset HEAD^`. Isso nos permite adicionar os arquivos daquele commit, agora separadamente, e adicionar commits específicos para cada arquivo. Para finalizar as mudanças nesse modo rebase no terminal, usamos o comando `git rebase --continue`.
 
-```bash
-
-```
-
-## Reflog
+### Reflog
 
 Exibe uma lista de todas as ações feitas da mais recente para a mais antiga. Útil para fazer um reset para um hash específico.
 
