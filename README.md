@@ -401,7 +401,7 @@ git rm --cached index.js
 
 ## Rebase Interativo
 
-Podemos usá-lo para renomear um commit.
+Podemos usá-lo para renomear/reescrever a história de um commit.
 
 Flags:
 
@@ -411,12 +411,31 @@ Flags:
 git rebase -i HEAD~5 # últimos 4 commits
 ```
 
+Pelo editor:
+
+- `r` ou `reword`: para reescrever um commit.
+
+Podemos também juntar vários commits em um só.
+
+- `s` ou `squash`: juntar um ou mais commits e depois criamos uma nova mensagem para o commit de referência.
+- `f` ou `fixup`: juntar um ou mais commits e mantém a mensagem do commit de referência.
+
 ```bash
 
 ```
 
-```bash
+## Reflog
 
+Exibe uma lista de todas as ações feitas da mais recente para a mais antiga. Útil para fazer um reset para um hash específico.
+
+```bash
+$ git reflog
+5e0ce98 (HEAD -> master) HEAD@{0}: rebase -i (finish): returning to refs/heads/master
+5e0ce98 (HEAD -> master) HEAD@{1}: rebase -i (pick): docs: adding info about git rebase interactive
+35845e0 HEAD@{2}: rebase -i (pick): docs: adding some info about git rm --cached
+7020e71 HEAD@{3}: rebase -i (pick): feat: removing index.js and adding some info about git rm
+2f9b9d6 HEAD@{6}: rebase -i (start): checkout HEAD~5
+...
 ```
 
 [1]: https://www.conventionalcommits.org/en/v1.0.0/
