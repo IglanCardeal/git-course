@@ -260,7 +260,9 @@ git reset 8d89344 --hard
 
 ### Revert
 
-Neste caso, eu posso **desfazer um commit específico revertendo todas as alterações** deste commit e gerando automaticamente um commit novo para as reversõe feitas.
+Neste caso, eu posso **desfazer um commit específico revertendo todas as alterações** deste commit e gerando automaticamente um commit novo para as reversõe feitas. 
+
+**OBS**: Os commits que estão acima do commit do revert não são alterados.
 
 ```bash
 git revert <commit hash>
@@ -276,14 +278,40 @@ git revert 8d89344
 git revert HEAD~1
 ```
 
-Se houver problemas de conflito, resolva-os e depois faça um commit normalmente.
+Se houver problemas de conflito, resolva-os e depois faça um commit normalmente. Se não houver conflito, ele commita automaticamente.
+
+Flags:
+
+- `--no-edit`: para não mostrar mensagens no editor e não ter que confirmar mensagens do commit do revert.
 
 ```bash
+git revert HEAD~1 --no-edit
+```
 
+- `--no-commit`: não gera commits. Neste caso as alterações vão para a staged areas para serem commitadas manualmente. 
+
+```bash
+git revert HEAD~1 --no-comit
+```
+
+## Checkout
+
+Podemos desfazer alterações de um arquivo/pasta que está na **unstaged area**. Arquivos que estão como _untracked_ ou que estão na staged area não são afetados.
+
+```bash
+git checkout test.js
+```
+
+Podemos também usá-lo para analisar código e estruturas de um commit específico, ou seja, podemos ser "direcionados" para o estado que determinado commit tinha. Neste caso, somos movido para uma **branch desacoplada** (`detached`) que permite analisar pelo editor as pastas e arquivos daquele estado do commit.
+
+Podemos usar para commit assim como para tags:
+
+```bash
+git checkout 8d89344
 ```
 
 ```bash
-
+git checkout v1.0.1
 ```
 
 ```bash
