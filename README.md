@@ -263,8 +263,20 @@ git reset 8d89344 --hard
 Neste caso, eu posso **desfazer um commit específico revertendo todas as alterações** deste commit e gerando automaticamente um commit novo para as reversõe feitas.
 
 ```bash
-
+git revert <commit hash>
 ```
+
+Exemplos:
+
+```bash
+git revert 8d89344
+```
+
+```bash
+git revert HEAD~1
+```
+
+Se houver problemas de conflito, resolva-os e depois faça um commit normalmente.
 
 ```bash
 
