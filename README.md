@@ -356,7 +356,21 @@ para remover de forma recursiva:
 git clean -f -d
 ```
 
-# Rm
+## Show
+
+Mostra todas as mudançãs dentro de um commit.
+
+```bash
+git show <commit hash>
+```
+
+ou
+
+```bash
+git show <tagname>
+```
+
+## Rm
 
 Semelhante ao `clean`, ele remove fisicamente os arquivos que agora estão _tracked_.
 
@@ -419,6 +433,7 @@ Podemos também juntar vários commits em um só.
 
 - `s` ou `squash`: juntar um ou mais commits e depois criamos uma nova mensagem para o commit de referência.
 - `f` ou `fixup`: juntar um ou mais commits e mantém a mensagem do commit de referência.
+- `e` ou `edit`: editar um commit e depois **no terminal** podemos fazer os arquivos do commit retornar para a unstaged area usando o comando `git reset HEAD^`. Isso nos permite adicionar os arquivos daquele commit, agora separadamente, e adicionar commits específicos para cada arquivo. Para finalizar as mudanças nesse modo rebase no terminal, usamos o comando `git rebase --continue`.
 
 ```bash
 
