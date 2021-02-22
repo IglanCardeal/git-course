@@ -276,6 +276,8 @@ git revert 8d89344
 git revert HEAD~1
 ```
 
+ops--- texto erraeoroad
+
 Se houver problemas de conflito, resolva-os e depois faça um commit normalmente.
 
 ```bash
