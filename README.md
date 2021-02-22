@@ -391,6 +391,16 @@ ou
 git rm -r -f routes
 ```
 
+- `--cached`: existem casos em que adicionamos ao arquivo `.gitignore` arquivos que não queremos mais que eles sejam _trackeados_ pelo git, só que eles já estão sendo _trackeados_. Neste caso usamos esta flag.
+
+  Exemplo: depois de index.js adicionado ao gitignore, não queremos mais que o git faça o _track_ desse arquivo.
+
+```bash
+git rm --cached index.js
+```
+
+## Rebase Interativo
+
 ```bash
 
 ```
