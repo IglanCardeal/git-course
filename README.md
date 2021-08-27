@@ -74,7 +74,7 @@ Must be one of the following:
 
 ### Amend 
 
-- `--amend --no-edit` - Comita um arquivo junto com o commit anterior, ou seja, dois commits diferentes se tornam um só, no caso o commit anterior.
+- `--amend --no-edit` - Comita um arquivo junto com o commit anterior, ou seja, dois commits diferentes se tornam um só, no caso o commit anterior. Muito bom para fazer ajustes minimos em arquivos já commitados, mas sem ter que fazer um outro commit. E é bom nesses casos inserir os arquivos individualmente.
 
 ```bash
 git commit --amend --no-edit
