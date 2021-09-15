@@ -36,7 +36,7 @@ Atalhos personalizados no arquivo de config.
 [alias]
   s = !git status
   ss = !git status -s
-  c = !git add --all &git commit -m
+  c = !git add --all && git commit -m
   l = !git log --pretty=format:'%C(green)%h %C(red)%d %C(cyan)%s %n %C(white)Author: %cn, %C(yellow)%cr %n Date: %ai %n'
   # l = !git log --pretty=reference
   # l = !git log --pretty=fuller
