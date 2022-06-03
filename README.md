@@ -72,7 +72,7 @@ Must be one of the following:
 
 ## Comandos
 
-### Amend 
+### Amend
 
 - `--amend --no-edit` - Comita um arquivo junto com o commit anterior, ou seja, dois commits diferentes se tornam um só, no caso o commit anterior. Muito bom para fazer ajustes minimos em arquivos já commitados, mas sem ter que fazer um outro commit. E é bom nesses casos inserir os arquivos individualmente.
 
@@ -450,6 +450,22 @@ $ git reflog
 2f9b9d6 HEAD@{6}: rebase -i (start): checkout HEAD~5
 ...
 ```
+
+### Shallow Clone
+
+Este comando permite realizar o pull dos últimos commits de um histórico de um repo.
+
+Exemplo:
+
+    git clone --depth=1 <url_do_meu_repositório>
+
+Veja porém que essa prática de _shallow copy_ (estilo SVN) não costuma ser a melhor solução no mundo Git por uma série de motivos:
+
+- O histórico de um repositório é fortemente compactado (espaço em disco não costuma ser um problema)
+- Operações de clone de repositórios remotos podem demorar um tempo sim, mas não costumam ser corriqueiras (eu geralmente clono um repositório remoto uma única vez; se precisar de mais clones, faço clones locais).
+- O Git também possui ferramentas como `filter-branch` e `purge` para diminuir o tamanho de repositórios muito grandes.
+- Alternativamente, se você realmente precisar, é possível clonar uma única branch:
+  `git clone -b minha_branch --single-branch <url_do_meu_repositório>`
 
 [1]: https://www.conventionalcommits.org/en/v1.0.0/
 [2]: https://www.npmjs.com/package/git-commit-msg-linter
