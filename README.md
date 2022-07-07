@@ -33,15 +33,25 @@ git config --global --edit
 Atalhos personalizados no arquivo de config.
 
 ```bash
+# This is Git's per-user configuration file.
+[user]
+# Please adapt and uncomment the following lines:
+	name = IglanCardeal
+	email = <email>
+[core]
+	editor = code
 [alias]
   s = !git status
   ss = !git status -s
   c = !git add --all && git commit -m
+  cm = !git commit -m
   l = !git log --pretty=format:'%C(green)%h %C(red)%d %C(cyan)%s %n %C(white)Author: %cn, %C(yellow)%cr %n Date: %ai %n'
   # l = !git log --pretty=reference
   # l = !git log --pretty=fuller
   # l = !git log --pretty=full
   p = !git push origin
+[credential]
+	helper = store
 ```
 
 Para o `--pretty=format:`, vide [docs.](https://git-scm.com/docs/pretty-formats)
