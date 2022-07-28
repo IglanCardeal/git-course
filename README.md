@@ -152,6 +152,20 @@ Enviando para o repositório incluindo as tags anotadas:
 git push origin master --follow-tags
 ```
 
+Deletando multiplas tags:
+
+- Local:
+
+```bash
+git tag -d $(git tag -l "tag_prefix")
+```
+
+- Remote:
+
+```bash
+git push -d origin $(git tag -l "tag_prefix")
+```
+
 ### Revert & Reset
 
 #### Reset
